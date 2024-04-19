@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+
+        <!-- Add Todo Section -->
+        <div class="pb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Todo Item</h5>
+                    <form id="addTodoForm" method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg" name="todoitem"
+                                value="{{ todo.todoitem }}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg" name="description"
+                                value="{{ todo.description }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="status">Status:</label>
+                            <input type="radio" id="status_pending" name="status" value="Pending" 
+{% if todo.status == 'Pending' %} checked {% endif %}>
+                            <label for="status_pending">Pending</label>
+                            <input type="radio" id="status_complete" name="status" value="Complete" 
+{% if todo.status == 'Complete' %} checked {% endif %}>
+                            <label for="status_complete">Complete</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Project Name : {{ project.title }}</h5>
+
+                <table class="table table-bordered">
+                    <thead style="background-color:rgb(220, 103, 103)">
+                        <tr>
+                            <th scope="col">Todo Item</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">Updated Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for todo in todos %}
+                        <tr>
+                            <td>{{ todo.todoitem }}</td>
+                            <td>{{ todo.description }}</td>
+                            <td>{{ todo.created_date }}</td>
+                            <td>{{ todo.updated_date }}</td>
+                            <td>{{ todo.status }}</td>
+                            <td>
+                                <button class="btn btn-success">
+                                    <a href="{% url 'update_todo' project_id=project.id todo_id=todo.id %}" style="text-decoration: none; color: white;">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </button>
+                            
+                                <button class="btn btn-danger">
+                                    <a href="{% url 'delete_todo' project_id=project.id todo_id=todo.id %}" style="text-decoration: none; color: white;">
+                                        <i class="fas fa-trash-alt"></i> 
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

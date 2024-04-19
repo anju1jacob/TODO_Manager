@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+
+                        <h4 class="text-center my-3 pb-3">To Do App</h4>    
+                        <h4 class="text-center my-3 pb-3"><a href="/user_logout/">Logout</a></h4> 
+                        <form class="row g-3 justify-content-center align-items-center pb-2" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <hr>
+                            <div class="pb-2">
+                                <div class="card ">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row align-items-center ">
+                                            <input type="text" class="form-control form-control-lg" name="project"
+                                                id="exampleFormControlInput1" placeholder="Add new project...">
+                                            
+                                            <div>
+                                                <button  class="btn btn-primary">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <br>
+                        <h4 class="text-center my-3 pb-3">Project List</h4>
+                        <table class="table mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Project Title</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for project in projects %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{project.title}}</td>
+                                    <td>{{project.created_date|date:"F j, Y"}}</td>
+                                    <td>
+                                        <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                                        <button type="submit" class="btn btn-success ms-1"><a href="{% url 'project_details' project_id=project.id %}" style="text-decoration: none; color: white;">View</a></button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}
