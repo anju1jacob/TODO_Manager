@@ -20,6 +20,27 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Created Date: Date when the todo was created.<br>
 • Updated Date: Date when the todo was last updated.
 
+# GITHUB_TOKEN  creation
+1. Sign in to GitHub:<br>
+&nbsp;&nbsp;&nbsp;  Sign in to your GitHub account if you haven't already. You'll need to have an existing GitHub account to create a token.<br>
+2. Access Personal Access Tokens Page:<br>
+• Click on your profile picture at the top-right corner of GitHub.<br>
+• From the dropdown menu, select "Settings".<br>
+• In the left sidebar, click on "Developer settings".<br>
+• From the expanded sidebar, click on "Personal access tokens" (classic) .<br>
+3. Generate a New Token:<br>
+• Click on the "Generate new token" button.<br>
+• You may need to re-enter your password for authentication.<br>
+• Provide a meaningful note for the token to remind you of its purpose.<br>
+• Select the scopes (permissions) needed for your token. For this Django project, you may only need the gist scope if you're creating gists.<br>
+• Click on the "Generate token" button at the bottom of the page.<br>
+4. Copy the Token:<br>
+• Once the token is generated, GitHub will display it on the screen. Important: Copy the token immediately as you won't be able to see it again. Store it securely, as it provides access to your GitHub account.
+# Gist Creation
+set up the GITHUB_TOKEN environment variable on machine before running the project. <br>
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Windows:   &nbsp;&nbsp; <b> set GITHUB_TOKEN=your_github_token_here </b> ( Using Command Prompt) <br>
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Linux/macOS : &nbsp;&nbsp; <b> export GITHUB_TOKEN=your_github_token_here </b>
+
 # Setup Instructions
 • Clone the repository: &nbsp;&nbsp;  <b>git clone repository-url</b><br>
 • Navigate to the project directory:&nbsp;&nbsp;  <b> cd todo_manager</b><br>
