@@ -40,7 +40,7 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Run tests:  python manage.py test<br>
 • View test coverage: <br>
     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  1. pip install coverage (install this  package to view the test coverage)<br>
-     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2. <h6>coverage run --source='.' manage.py test && coverage report</h6><br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2. <b>coverage run --source='.' manage.py test && coverage report</b><br>
 # Usage
 • Sign up or log in with your credentials.<br>
 • Create a new project and start adding todos.<br>
