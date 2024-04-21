@@ -21,26 +21,26 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Updated Date: Date when the todo was last updated.
 
 # Setup Instructions
-• Clone the repository:   git clone repository-url<br>
-• Navigate to the project directory:   cd todo_manager<br>
+• Clone the repository: &nbsp;&nbsp;  <b>git clone repository-url</b><br>
+• Navigate to the project directory:&nbsp;&nbsp;  <b> cd todo_manager</b><br>
 • Set up a virtual environment (optional but recommended): <br>
-   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1. virtualenv venv (install virtual enviornment)<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;     2. python -m virtualenv venv (create virtual enviornment)<br></p>
+   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<b> 1. virtualenv venv</b> (install virtual enviornment)<br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;    <b> 2. python -m virtualenv venv </b>(create virtual enviornment)<br></p>
 • Activate the virtual environment:<br>
-    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  For Windows: venv\Scripts\activate<br>
-     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; For macOS/Linux: source venv/bin/activate<br>
-• Install dependencies: pip install django<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  <b> For Windows: venv\Scripts\activate</b><br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <b> For macOS/Linux: source venv/bin/activate</b><br>
+• Install dependencies:&nbsp; &nbsp; <b>pip install django></b><br>
 • Apply database migrations:<br>
-    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  python manage.py makemigrations<br>
-     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; python manage.py migrate<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  <b>python manage.py makemigrations</b><br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <b>python manage.py migrate</b><br>
 # Run Instructions
-• Start the development server:    python manage.py runserver<br>
+• Start the development server:   <b> python manage.py runserver</b><br>
 • Open your web browser and navigate to  http://127.0.0.1:8000/.<br>
 # Test Instructions
-• Run tests:  python manage.py test<br>
+• Run tests: <b>  python manage.py test</b><br>
 • View test coverage: <br>
-    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  1. pip install coverage (install this  package to view the test coverage)<br>
-     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2. <b>coverage run --source='.' manage.py test && coverage report</b><br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <b>  1. pip install coverage</b> (install this  package to view the test coverage)<br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;x <b>2. coverage run --source='.' manage.py test && coverage report</b><br>
 # Usage
 • Sign up or log in with your credentials.<br>
 • Create a new project and start adding todos.<br>
