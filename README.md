@@ -21,10 +21,10 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Updated Date: Date when the todo was last updated.
 
 # Setup Instructions
-• Clone the repository: git clone repository-url<br>
-• Navigate to the project directory: cd todo_manager<br>
+• Clone the repository:   git clone repository-url<br>
+• Navigate to the project directory:   cd todo_manager<br>
 • Set up a virtual environment (optional but recommended): <br>
-       <p style='margin-left:5%'>1. virtualenv venv (install virtual enviornment)<br>
+        &nbsp;1. virtualenv venv (install virtual enviornment)<br>
         2. python -m virtualenv venv (create virtual enviornment)<br></p>
 • Activate the virtual environment:<br>
       For Windows: venv\Scripts\activate<br>
