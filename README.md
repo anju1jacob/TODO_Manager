@@ -24,23 +24,23 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Clone the repository:   git clone repository-url<br>
 • Navigate to the project directory:   cd todo_manager<br>
 • Set up a virtual environment (optional but recommended): <br>
-   &nbsp;&nbsp;&nbsp; &nbsp;1. virtualenv venv (install virtual enviornment)<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;     2. python -m virtualenv venv (create virtual enviornment)<br></p>
+   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1. virtualenv venv (install virtual enviornment)<br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;     2. python -m virtualenv venv (create virtual enviornment)<br></p>
 • Activate the virtual environment:<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;   For Windows: venv\Scripts\activate<br>
-     &nbsp;&nbsp;&nbsp; &nbsp;  For macOS/Linux: source venv/bin/activate<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  For Windows: venv\Scripts\activate<br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; For macOS/Linux: source venv/bin/activate<br>
 • Install dependencies: pip install django<br>
 • Apply database migrations:<br>
-    &nbsp;&nbsp;&nbsp; &nbsp;   python manage.py makemigrations<br>
-     &nbsp;&nbsp;&nbsp; &nbsp;  python manage.py migrate<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  python manage.py makemigrations<br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; python manage.py migrate<br>
 # Run Instructions
 • Start the development server:    python manage.py runserver<br>
 • Open your web browser and navigate to  http://127.0.0.1:8000/.<br>
 # Test Instructions
 • Run tests:  python manage.py test<br>
 • View test coverage: <br>
-    &nbsp;&nbsp;&nbsp; &nbsp;   1. pip install coverage (install this  package to view the test coverage)<br>
-     &nbsp;&nbsp;&nbsp; &nbsp;  2. coverage run --source='.' manage.py test && coverage report<br>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  1. pip install coverage (install this  package to view the test coverage)<br>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2. <h6>coverage run --source='.' manage.py test && coverage report</h6><br>
 # Usage
 • Sign up or log in with your credentials.<br>
 • Create a new project and start adding todos.<br>
