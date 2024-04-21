@@ -21,33 +21,36 @@ The Todo Manager Application is a web-based tool developed using Django that all
 • Updated Date: Date when the todo was last updated.
 
 # Setup Instructions
-Clone the repository: git clone <repository-url>
-Navigate to the project directory: cd todo_manager
-Set up a virtual environment (optional but recommended): python -m venv venv
-Activate the virtual environment:
-For Windows: venv\Scripts\activate
-For macOS/Linux: source venv/bin/activate
-Install dependencies: pip install -r requirements.txt
-Create a .env file in the root directory and configure environment variables (e.g., database connection, GitHub token).
-Apply database migrations: python manage.py migrate
-Run Instructions
-Start the development server: python manage.py runserver
-Open your web browser and navigate to http://127.0.0.1:8000/.
-Test Instructions
-Run tests: python manage.py test
-View test coverage: coverage run --source='.' manage.py test && coverage report
-Usage
-Sign up or log in with your credentials.
-Create a new project and start adding todos.
-Manage todos within each project (add, edit, update, mark as complete).
-Export project summary as a secret gist on GitHub.
-Technologies Used
-Python
-Django
-Django Rest Framework
-PostgreSQL (or any preferred database)
-HTML/CSS
-JavaScript (optional for frontend enhancements)
+• Clone the repository: git clone <repository-url>
+• Navigate to the project directory: cd todo_manager
+• Set up a virtual environment (optional but recommended): 
+        1. virtualenv venv (install virtual enviornment)
+        2. python -m virtualenv venv (create virtual enviornment)
+• Activate the virtual environment:
+      For Windows: venv\Scripts\activate
+      For macOS/Linux: source venv/bin/activate
+• Install dependencies: pip install django
+• Apply database migrations:
+      python manage.py makemigrations
+      python manage.py migrate
+# Run Instructions
+• Start the development server: python manage.py runserver
+• Open your web browser and navigate to http://127.0.0.1:8000/.
+# Test Instructions
+• Run tests: python manage.py test
+• View test coverage: 
+      1. pip install coverage (install this  package to view the test coverage)
+      2. coverage run --source='.' manage.py test && coverage report
+# Usage
+• Sign up or log in with your credentials.
+• Create a new project and start adding todos.
+• Manage todos within each project (add, edit, update, mark as complete).
+• Export project summary as a secret gist on GitHub.
+## Technology Stack
+* Frontend: HTML/CSS, JavaScript, Bootstrap
+* Backend: Python
+* Web Framework: Django
+* Database: Sqlite3
+
 Contributors
-John Doe (john@example.com)
-Jane Smith (jane@example.com)
+Anju Jacob(jacob.anju98@gmail.com)
