@@ -22,13 +22,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_page, name='index_page'), 
     path('login/', views.login_page, name='login_page'), 
-    path('user_logout/', views.user_logout, name='user_logout'),
+    path('logout/', views.user_logout, name='logout'), 
     path('register/', views.register_page, name='register'),
     path('home/', views.home_page, name='home_page'),
     path('project_details/<int:project_id>/', views.project_details, name='project_details'),
     path('update_todo/<int:project_id>/<int:todo_id>/', views.update_todo, name='update_todo'),
     path('delete_todo/<int:project_id>/<int:todo_id>/', views.delete_todo, name='delete_todo'),
     path('update_project_title/<int:project_id>/', views.update_project_title, name='update_project_title'),
+    path('export_gist/<int:project_id>/', views.export_gist_view, name='export_gist'),
 
 ]
 

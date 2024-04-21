@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import User, Project, Todo
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 import requests
+import os
 # Create your views here.
 
 def index_page(request):
@@ -37,9 +38,15 @@ def login_page(request):
      
     return render(request, 'login.html')
 
+
+
 def user_logout(request):
+    print("Logging out user:", request.user.username)
     logout(request)
-    return redirect('login_page')  # Redirect to the login page after logout
+    print("User logged out")
+    return redirect('login_page')
+
+
 
 def register_page(request):
     if request.method == 'POST':
@@ -95,10 +102,11 @@ def project_details(request, project_id):
         todoitem = request.POST.get('todoitem')
         description = request.POST.get('description')
         Todo.objects.create(project=project, todoitem=todoitem, description=description)
+        # After creating the todo, fetch all todos again
+        todos = project.todos.all()
+        return HttpResponseRedirect(request.path_info)
 
-        return redirect('project_details', project_id=project_id)
-    else:
-        return render(request, 'project_details.html', {'project': project, 'todos': todos})
+    return render(request, 'project_details.html', {'project': project, 'todos': todos})
 
 @login_required    
 def update_todo(request, project_id, todo_id):
@@ -137,21 +145,56 @@ def update_project_title(request, project_id):
         # Handle GET request if needed
         pass
 
-@csrf_exempt
-def create_gist(request):
-    if request.method == "POST":
-        access_token = "YOUR_GITHUB_ACCESS_TOKEN"  # Replace with your actual GitHub access token
-        data = request.json()
-        project_title = data.get("projectTitle")
-        project_summary = data.get("projectSummary")
-        filename = f"{project_title}.md"
-        gist_id = create_gist(access_token, filename, project_summary)
-        return JsonResponse({"gistId": gist_id})
-    return JsonResponse({"error": "Method not allowed"}, status=405)
 
-def download_gist(request):
-    gist_id = request.GET.get("gist_id")
-    access_token = "YOUR_GITHUB_ACCESS_TOKEN"  # Replace with your actual GitHub access token
-    output_filename = f"exported_project_summary.md"
-    download_gist(access_token, gist_id, output_filename)
-    # Here you can return a response to indicate that the download is successful 
+
+def create_secret_gist(title, content, token):
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    data = {
+        "files": {
+            f"{title}.md": {
+                "content": content
+            }
+        },
+        "public": False
+    }
+    response = requests.post("https://api.github.com/gists", headers=headers, json=data)
+    if response.status_code == 201:
+        return response.json()["html_url"]
+    else:
+        return None
+
+def save_gist_locally(gist_url, project_title):
+    gist_id = gist_url.split('/')[-1]
+    download_url = f"https://gist.github.com/{gist_id}/download"
+    response = requests.get(download_url)
+    with open(f"{project_title}.md", "wb") as f:
+        f.write(response.content)
+
+def export_gist_view(request, project_id):
+    project = Project.objects.get(id=project_id)
+    pending_todos = project.todos.filter(status='Pending').values_list('todoitem', flat=True)
+    completed_todos = project.todos.filter(status='Complete').values_list('todoitem', flat=True)
+    total_todos = project.todos.count()
+    completed_count = project.todos.filter(status='Complete').count()
+
+    # Generate project summary in Markdown format
+    summary = f"# {project.title}\n\nSummary: {completed_count}/{total_todos} completed.\n\n## Pending Todos\n"
+    for todo in pending_todos:
+        summary += f"- [ ] {todo}\n"
+    summary += "\n## Completed Todos\n"
+    for todo in completed_todos:
+        summary += f"- [x] {todo}\n"
+
+    # Create secret gist
+    github_token = os.environ.get('GITHUB_TOKEN')
+    gist_url = create_secret_gist(project.title, summary, github_token)
+    
+    # Save gist locally
+    if gist_url:
+        save_gist_locally(gist_url, project.title)
+        return HttpResponse("Gist created and saved locally.")
+    else:
+        return HttpResponse("Failed to create gist.")

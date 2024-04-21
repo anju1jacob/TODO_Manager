@@ -20,12 +20,6 @@
                             <input type="text" class="form-control form-control-lg" name="description"
                                 placeholder="Description...">
                         </div>
-                        <!-- <div class="mb-3">
-                        Status: 
-                        {% for status, status_display in Todo.STATUS_CHOICES %}
-                        <input type="radio" name="status" value="{{ status }}">{{ status_display }}
-                        {% endfor %}
-                    </div> -->
                         <div class="d-flex align-items-center">
                             <button type="submit" class="btn btn-primary">Add</button>
                         </div>
@@ -39,10 +33,10 @@
             <div class="card-body">
                 <div class="row">
                     <h5 class="card-title">Project Name : {{ project.title }}
-                <!-- Add edit icon and trigger modal -->
-                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editProjectModal">
-                    <i class="fas fa-edit"></i>
-                </button></h5>
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editProjectModal">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    </h5>
                 </div>
                 <table class="table table-bordered">
                     <thead style="background-color:rgb(220, 103, 103)">
@@ -71,7 +65,7 @@
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                 </button>
-
+                    
                                 <button class="btn btn-danger">
                                     <a href="{% url 'delete_todo' project_id=project.id todo_id=todo.id %}"
                                         style="text-decoration: none; color: white;">
@@ -79,7 +73,12 @@
                                     </a>
                                 </button>
                             </td>
-                            <td><button id="downloadButton">download</button></td>
+                            <td>
+                                <form action="{% url 'export_gist' project_id=project.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit">Export Gist</button>
+                                </form>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -115,6 +114,9 @@
 </div>
 </div>
 
+
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get elements
@@ -134,36 +136,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-    document.getElementById("downloadButton").addEventListener("click", function() {
-        // Get the project title and summary
-        var projectTitle = "{{ project.title }}";
-        var projectSummary = "{{ project.summary }}"; // Replace with the actual summary
-        
-        // Send a request to the backend to create the Gist
-        fetch("/create_gist/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
-            },
-            body: JSON.stringify({
-                projectTitle: projectTitle,
-                projectSummary: projectSummary
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Once the Gist is created, trigger the download
-            if (data.gistId) {
-                window.location.href = "/download_gist/?gist_id=" + data.gistId;
-            } else {
-                console.error("Failed to create Gist");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-    </script>
+
 {% endblock content %}
